@@ -11,11 +11,20 @@ public abstract class EventSimulator {
 
     public abstract void execute();
 
-    public double getDate(int param) {
+    public double getExpo(int param) {
         Random rand = new Random();
+        //peut-être ça plutôt :  -(1 / lambda) * log( 1 - rand.nextDouble() );
         double exp = Math.log(1 - rand.nextDouble()) / (-param);
 
         return (exp/10) * 60;
 
     }
+
+    public double getUni(double inf, double sup) {
+        double range = (sup - inf);
+        return inf + (Math.random() * range);
+
+    }
+
+
 }
