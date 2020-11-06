@@ -1,17 +1,16 @@
 package Core;
 
 import Core.EventSimulator;
+import javafx.collections.transformation.SortedList;
+import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.TreeMap;
-
-
+import java.util.*;
 
 
 public class Scheduler {
 
-    private static TreeMap<Double, ArrayList<EventSimulator>> listEvent;
+    //private static TreeMap<Double, ArrayList<EventSimulator>> listEvent;
+    private static ArrayList<Pair<Double,EventSimulator>> listEvent;
     public static double simulationDate;
     public static double dateMax;
 
@@ -22,7 +21,7 @@ public class Scheduler {
 
 
     public Scheduler(double dateMax){
-        listEvent = new TreeMap<>();
+        listEvent = new ArrayList<Pair<Double, EventSimulator>>();
         Scheduler.dateMax = dateMax;
     }
 
@@ -32,13 +31,19 @@ public class Scheduler {
         new StartSimulationEvent().execute();
 
         while(!listEvent.isEmpty()){
-            calcArea(listEvent.firstKey());
-            simulationDate = listEvent.firstKey();
-            for (EventSimulator event: listEvent.get(simulationDate)) {
-                event.execute();
-            }
+            calcArea(listEvent.get(0).getKey());
+            simulationDate = listEvent.get(0).getKey();
+            listEvent.get(0).getValue().execute();
 
-            listEvent.remove(simulationDate);
+            listEvent.remove(0);
+
+            Collections.sort(listEvent, new Comparator<Pair<Double,EventSimulator>>() {
+                @Override
+                public int compare(Pair<Double,EventSimulator> o1, Pair<Double,EventSimulator> o2) {
+                    return (o1.getKey().compareTo(o2.getKey()));
+                }
+            });
+
 
         }
 
@@ -59,24 +64,26 @@ public class Scheduler {
 
     public static void add(Double dbl, EventSimulator event){
         if(dbl <= dateMax){
-            if (listEvent.containsKey(dbl)){
-                listEvent.get(dbl).add(event);
-            } else {
-                ArrayList< EventSimulator> list = new ArrayList<>();
-                list.add(event);
-                listEvent.put(dbl, list);
-            }
+            listEvent.add(new Pair<>(dbl, event));
+
+//            if (listEvent.containsKey(dbl)){
+//                listEvent.get(dbl).add(event);
+//            } else {
+//                ArrayList< EventSimulator> list = new ArrayList<>();
+//                list.add(event);
+//                listEvent.put(dbl, list);
+//            }
         }
     }
 
     public String toString() {
         String str = "";
 
-        for (Map.Entry<Double,ArrayList<EventSimulator>> entry: listEvent.entrySet()) {
-            for (EventSimulator event: entry.getValue()) {
-                str +=  "Key : " + entry.getKey() + " / Value : " + event.toString();
-            }
-        }
+//        for (Map.Entry<Double,ArrayList<EventSimulator>> entry: listEvent.entrySet()) {
+//            for (EventSimulator event: entry.getValue()) {
+//                str +=  "Key : " + entry.getKey() + " / Value : " + event.toString();
+//            }
+//        }
 
         return str;
     }
