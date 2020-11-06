@@ -7,9 +7,9 @@ public class DepartureControlEvent extends EventSimulator{
 
     @Override
     public void execute() {
-        ControlCenter = true;
+        statisticalIndicator.ControlCenter = false;
 
-        if(NbBusInControlQ == 0) {
+        if(statisticalIndicator.NbBusInControlQ == 0) {
             scheduler.add(dateSimu, new AccessControlEvent());
         }
 

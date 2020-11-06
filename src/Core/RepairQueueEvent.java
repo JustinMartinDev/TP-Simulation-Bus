@@ -7,10 +7,10 @@ public class RepairQueueEvent extends EventSimulator {
 
     @Override
     public void execute() {
-        NbBusInRepairQ += 1;
-        NbBusRepaired += 1;
+        statisticalIndicator.NbBusInRepairQ += 1;
+        statisticalIndicator.nbBusRepaired += 1;
 
-        if(RepairCenter < 2) {
+        if(statisticalIndicator.RepairCenter < 2) {
             scheduler.add(dateSimu, new AccessRepairEvent());
         }
 

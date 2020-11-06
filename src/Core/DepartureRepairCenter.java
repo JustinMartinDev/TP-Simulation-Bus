@@ -7,9 +7,9 @@ public class DepartureRepairCenter extends EventSimulator{
 
     @Override
     public void execute() {
-        RepairCenter -= 1;
+        statisticalIndicator.RepairCenter -= 1;
 
-        if(NbBusInRepairQ == 0) {
+        if(statisticalIndicator.NbBusInRepairQ == 0) {
             scheduler.add(dateSimu, new AccessRepairEvent());
         }
 

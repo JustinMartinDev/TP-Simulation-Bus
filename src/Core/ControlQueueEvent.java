@@ -8,9 +8,9 @@ public class ControlQueueEvent extends EventSimulator {
     @Override
     public void execute() {
 
-        NbBusInControlQ += 1;
+        statisticalIndicator.NbBusInControlQ += 1;
 
-        if(ControlCenter == true)
+        if(!statisticalIndicator.ControlCenter)
         {
             scheduler.add(dateSimu, new AccessControlEvent());
         }

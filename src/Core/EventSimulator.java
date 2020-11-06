@@ -5,6 +5,8 @@ import java.util.Random;
 public abstract class EventSimulator {
     public String name;
 
+    public static StatisticalIndicator statisticalIndicator;
+
     public EventSimulator(String name){
         this.name = name;
     }

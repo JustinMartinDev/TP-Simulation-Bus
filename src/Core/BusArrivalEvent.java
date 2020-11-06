@@ -12,7 +12,7 @@ public class BusArrivalEvent extends EventSimulator {
     public void execute() {
 
         scheduler.add(scheduler.dateSimu + getExpo(2), new BusArrivalEvent());
-        NbBus += 1;
+        statisticalIndicator.nbBus += 1;
         scheduler.add(scheduler.dateSimu, new ControlQueueEvent());
     }
 

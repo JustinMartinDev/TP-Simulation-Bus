@@ -8,9 +8,9 @@ public class AccessControlEvent extends EventSimulator {
     @Override
     public void execute() {
 
-        NbBusInControlQ -= 1;
+        statisticalIndicator.NbBusInControlQ -= 1;
 
-        ControlCenter = false;
+        statisticalIndicator.ControlCenter = true;
 
         scheduler.add(dateSimu + getUni(1.0/4.0, 13.0/12.0), new DepartureControlEvent());
 
