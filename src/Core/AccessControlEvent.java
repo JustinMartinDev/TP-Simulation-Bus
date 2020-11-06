@@ -12,7 +12,7 @@ public class AccessControlEvent extends EventSimulator {
 
         statisticalIndicator.ControlCenter = true;
 
-        scheduler.add(dateSimu + getUni(1.0/4.0, 13.0/12.0), new DepartureControlEvent());
+        Scheduler.add(Scheduler.simulationDate + getUni(1.0/4.0, 13.0/12.0), new DepartureControlEvent());
 
     }
 }

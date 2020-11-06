@@ -15,9 +15,9 @@ public class EndSimulationEvent extends EventSimulator {
     public void execute() {
 
         Scheduler.clear();
-        float averageWaitingTimeBeforeControl = statisticalIndicator.aireControlQ/statisticalIndicator.nbBus;
-        float averageWaitingTimeBeforeRepair = statisticalIndicator.aireRepairQ/statisticalIndicator.nbBusRepaired;
-        float utilizationRepairCenterRate = statisticalIndicator.aireRepairCenter/(2 * 160);
+        double averageWaitingTimeBeforeControl = Scheduler.aireControlQ/statisticalIndicator.nbBus;
+        double averageWaitingTimeBeforeRepair = Scheduler.aireRepairQ/statisticalIndicator.nbBusRepaired;
+        double utilizationRepairCenterRate = Scheduler.aireRepairCenter/(2 * 160);
 
         System.out.println("Temps d'attente moyen avant contrôle = "+averageWaitingTimeBeforeControl);
         System.out.println("Temps d'attente moyen avant réparation = "+averageWaitingTimeBeforeRepair);

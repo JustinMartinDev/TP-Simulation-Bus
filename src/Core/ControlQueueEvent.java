@@ -12,7 +12,7 @@ public class ControlQueueEvent extends EventSimulator {
 
         if(!statisticalIndicator.ControlCenter)
         {
-            scheduler.add(dateSimu, new AccessControlEvent());
+            Scheduler.add(Scheduler.simulationDate, new AccessControlEvent());
         }
     }
 }

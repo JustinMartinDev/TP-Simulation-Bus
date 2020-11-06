@@ -11,9 +11,9 @@ public class BusArrivalEvent extends EventSimulator {
     @Override
     public void execute() {
 
-        scheduler.add(scheduler.dateSimu + getExpo(2), new BusArrivalEvent());
+        Scheduler.add(Scheduler.simulationDate + getExpo(2), new BusArrivalEvent());
         statisticalIndicator.nbBus += 1;
-        scheduler.add(scheduler.dateSimu, new ControlQueueEvent());
+        Scheduler.add(Scheduler.simulationDate, new ControlQueueEvent());
     }
 
 

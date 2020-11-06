@@ -11,7 +11,7 @@ public class RepairQueueEvent extends EventSimulator {
         statisticalIndicator.nbBusRepaired += 1;
 
         if(statisticalIndicator.RepairCenter < 2) {
-            scheduler.add(dateSimu, new AccessRepairEvent());
+            Scheduler.add(Scheduler.simulationDate, new AccessRepairEvent());
         }
 
     }

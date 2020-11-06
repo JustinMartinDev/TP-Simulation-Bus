@@ -10,13 +10,13 @@ public class DepartureControlEvent extends EventSimulator{
         statisticalIndicator.ControlCenter = false;
 
         if(statisticalIndicator.NbBusInControlQ == 0) {
-            scheduler.add(dateSimu, new AccessControlEvent());
+            Scheduler.add(Scheduler.simulationDate, new AccessControlEvent());
         }
 
         double repair = Math.random();
 
         if(repair < 0.3) {
-            scheduler.add(dateSimu, new RepairQueueEvent());
+            Scheduler.add(Scheduler.simulationDate, new RepairQueueEvent());
         }
 
     }
