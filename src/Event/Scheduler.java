@@ -27,9 +27,6 @@ public class Scheduler {
 
         while(!listEvent.isEmpty()){
             EventDatePair eventPairToRelease = listEvent.get(0);
-
-            System.out.println(eventPairToRelease.getEvent().getClass().getCanonicalName());
-
             calcArea(eventPairToRelease.getDateToRelease());
             simulationDate = eventPairToRelease.getDateToRelease();
             eventPairToRelease.getEvent().execute();
@@ -77,4 +74,10 @@ public class Scheduler {
 
         return str;
     }
+
+    public double getAireControlQ() {return aireControlQ;    }
+
+    public double getAireRepairQ() {return aireRepairQ;    }
+
+    public double getAireRepairCenter() {return  aireRepairCenter;}
 }
