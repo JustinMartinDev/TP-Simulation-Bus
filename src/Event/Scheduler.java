@@ -1,16 +1,13 @@
-package Core;
+package Event;
 
-import Core.EventSimulator;
-import javafx.collections.transformation.SortedList;
-import javafx.util.Pair;
+import Core.EventDatePair;
 
 import java.util.*;
-
 
 public class Scheduler {
 
     //private static TreeMap<Double, ArrayList<EventSimulator>> listEvent;
-    private static ArrayList<Pair<Double,EventSimulator>> listEvent;
+    private static ArrayList<EventDatePair> listEvent;
     public static double simulationDate;
     public static double dateMax;
 
@@ -19,32 +16,28 @@ public class Scheduler {
     public static double aireRepairCenter;
 
 
-
     public Scheduler(double dateMax){
-        listEvent = new ArrayList<Pair<Double, EventSimulator>>();
+        listEvent = new ArrayList<EventDatePair>();
         Scheduler.dateMax = dateMax;
     }
 
-
     public void start(){
-        simulationDate = 0;
-        new StartSimulationEvent().execute();
+        simulationDate = 0d;
+        add(simulationDate, new StartSimulationEvent());
 
         while(!listEvent.isEmpty()){
-            calcArea(listEvent.get(0).getKey());
-            simulationDate = listEvent.get(0).getKey();
-            listEvent.get(0).getValue().execute();
+            EventDatePair eventPairToRelease = listEvent.get(0);
 
-            listEvent.remove(0);
+            System.out.println(eventPairToRelease.getEvent().getClass().getCanonicalName());
 
-            Collections.sort(listEvent, new Comparator<Pair<Double,EventSimulator>>() {
-                @Override
-                public int compare(Pair<Double,EventSimulator> o1, Pair<Double,EventSimulator> o2) {
-                    return (o1.getKey().compareTo(o2.getKey()));
-                }
-            });
+            calcArea(eventPairToRelease.getDateToRelease());
+            simulationDate = eventPairToRelease.getDateToRelease();
+            eventPairToRelease.getEvent().execute();
 
+            if(listEvent.size() > 0)
+                listEvent.remove(0);
 
+            listEvent.sort(Comparator.comparing(EventDatePair::getDateToRelease));
         }
 
     }
@@ -59,12 +52,9 @@ public class Scheduler {
         listEvent.clear();
     }
 
-
-
-
     public static void add(Double dbl, EventSimulator event){
         if(dbl <= dateMax){
-            listEvent.add(new Pair<>(dbl, event));
+            listEvent.add(new EventDatePair(dbl, event));
 
 //            if (listEvent.containsKey(dbl)){
 //                listEvent.get(dbl).add(event);

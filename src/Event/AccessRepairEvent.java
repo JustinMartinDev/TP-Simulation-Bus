@@ -1,4 +1,4 @@
-package Core;
+package Event;
 
 public class AccessRepairEvent extends EventSimulator{
     public AccessRepairEvent() {

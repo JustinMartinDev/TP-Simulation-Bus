@@ -1,4 +1,4 @@
-package Core;
+package Event;
 
 public class DepartureRepairCenter extends EventSimulator{
     public DepartureRepairCenter() {

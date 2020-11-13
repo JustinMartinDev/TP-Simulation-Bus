@@ -1,7 +1,4 @@
-package Core;
-
-import Core.EventSimulator;
-import Core.StatisticalIndicator;
+package Event;
 
 import java.util.Random;
 

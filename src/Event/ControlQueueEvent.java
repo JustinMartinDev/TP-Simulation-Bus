@@ -1,4 +1,4 @@
-package Core;
+package Event;
 
 public class ControlQueueEvent extends EventSimulator {
     public ControlQueueEvent() {

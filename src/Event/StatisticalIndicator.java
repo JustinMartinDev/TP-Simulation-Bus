@@ -1,4 +1,4 @@
-package Core;
+package Event;
 
 public class StatisticalIndicator {
     public int nbBus = 0;

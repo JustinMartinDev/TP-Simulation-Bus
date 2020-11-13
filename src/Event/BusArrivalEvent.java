@@ -1,6 +1,4 @@
-package Core;
-
-import java.util.Random;
+package Event;
 
 public class BusArrivalEvent extends EventSimulator {
 

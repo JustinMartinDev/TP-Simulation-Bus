@@ -1,4 +1,4 @@
-package Core;
+package Event;
 
 public class DepartureControlEvent extends EventSimulator{
     public DepartureControlEvent() {

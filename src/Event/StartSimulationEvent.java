@@ -1,7 +1,4 @@
-package Core;
-
-import Core.EndSimulationEvent;
-import Core.EventSimulator;
+package Event;
 
 public class StartSimulationEvent extends EventSimulator {
     public StartSimulationEvent() {

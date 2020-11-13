@@ -1,16 +1,11 @@
-import Core.EventSimulator;
-import Core.Scheduler;
-
-import java.util.Random;
+import Event.Scheduler;
 
 public class Main {
 
 
     public static void main (String[] args){
-        System.out.println("Hello World");
         Scheduler scheduler = new Scheduler(160);
         scheduler.start();
-
         //start echéncier
     }
 

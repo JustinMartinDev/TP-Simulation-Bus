@@ -1,4 +1,4 @@
-package Core;
+package Event;
 
 public class AccessControlEvent extends EventSimulator {
     public AccessControlEvent() {

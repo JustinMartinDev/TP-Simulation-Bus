@@ -1,4 +1,4 @@
-package Core;
+package Event;
 
 public class RepairQueueEvent extends EventSimulator {
     public RepairQueueEvent() {
