@@ -5,12 +5,12 @@ public class Main {
 
 
     public static void main (String[] args){
-        double sumWaitingTimeBeforeControl=0f;
-        double sumWaitingTimeBeforeRepair=0f;
+        double sumWaitingTimeBeforeControl=0d;
+        double sumWaitingTimeBeforeRepair=0d;
         double sumUtilizationRepairCenterRate=0d;
 
         for (int i = 0; i < 500; i++) {
-            Scheduler scheduler = new Scheduler(240);
+            Scheduler scheduler = new Scheduler(300);
             scheduler.start();
 
             sumWaitingTimeBeforeControl += EndSimulationEvent.averageWaitingTimeBeforeControl;

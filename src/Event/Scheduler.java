@@ -13,7 +13,7 @@ public class Scheduler {
 
     public static double aireControlQ=0f;
     public static double aireRepairQ=0f;
-    public static double aireRepairCenter;
+    public static double aireRepairCenter=0f;
 
 
     public Scheduler(double dateMax){
@@ -22,7 +22,7 @@ public class Scheduler {
     }
 
     public void start(){
-        simulationDate = 0d;
+        simulationDate = 0f;
         add(simulationDate, new StartSimulationEvent());
 
         while(!listEvent.isEmpty()){
