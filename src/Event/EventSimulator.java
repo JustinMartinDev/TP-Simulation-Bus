@@ -15,10 +15,8 @@ public abstract class EventSimulator {
 
     public double getExpo(float param) {
         Random rand = new Random();
-       // double exp =  -(1 / param) * Math.log( 1 - rand.nextDouble() );
-       double exp = Math.log(1 - rand.nextDouble()) / (-param);
-    //    return exp;
-       return (exp/10) * 60;
+        double exp = Math.log(1 - rand.nextDouble()) / (-param);
+        return (exp/10) * 60;
     }
 
     public double getUni(double inf, double sup) {

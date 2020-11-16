@@ -10,7 +10,7 @@ public class Main {
         double sumUtilizationRepairCenterRate=0d;
 
         for (int i = 0; i < 500; i++) {
-            Scheduler scheduler = new Scheduler(300);
+            Scheduler scheduler = new Scheduler(240);
             scheduler.start();
 
             sumWaitingTimeBeforeControl += EndSimulationEvent.averageWaitingTimeBeforeControl;
