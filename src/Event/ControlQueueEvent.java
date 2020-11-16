@@ -7,7 +7,7 @@ public class ControlQueueEvent extends EventSimulator {
 
     @Override
     public void execute() {
-
+        System.out.println(name);
         statisticalIndicator.NbBusInControlQ += 1;
 
         if(!statisticalIndicator.ControlCenter)

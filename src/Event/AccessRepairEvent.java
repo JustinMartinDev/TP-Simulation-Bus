@@ -7,6 +7,7 @@ public class AccessRepairEvent extends EventSimulator{
 
     @Override
     public void execute() {
+        System.out.println(name);
         statisticalIndicator.NbBusInRepairQ -= 1;
         statisticalIndicator.RepairCenter += 1;
 

@@ -1,25 +1,26 @@
+import Event.EndSimulationEvent;
 import Event.Scheduler;
 
 public class Main {
 
 
     public static void main (String[] args){
-        double sumAireControlQ=0f;
-        double sumAireRepairQ=0f;
-        double sumAireRepairCenter=0d;
+        double sumWaitingTimeBeforeControl=0f;
+        double sumWaitingTimeBeforeRepair=0f;
+        double sumUtilizationRepairCenterRate=0d;
 
         for (int i = 0; i < 500; i++) {
-            Scheduler scheduler = new Scheduler(160);
+            Scheduler scheduler = new Scheduler(240);
             scheduler.start();
 
-            sumAireControlQ += scheduler.getAireControlQ();
-            sumAireRepairQ += scheduler.getAireRepairQ();
-            sumAireRepairCenter += scheduler.getAireRepairCenter();
+            sumWaitingTimeBeforeControl += EndSimulationEvent.averageWaitingTimeBeforeControl;
+            sumWaitingTimeBeforeRepair += EndSimulationEvent.averageWaitingTimeBeforeRepair;
+            sumUtilizationRepairCenterRate += EndSimulationEvent.utilizationRepairCenterRate;
         }
 
-        System.out.println("Average aireControlQ = " + sumAireControlQ/500);
-        System.out.println("Average aireRepairQ = " + sumAireRepairQ/500);
-        System.out.println("Average aireRepairCenter = " + sumAireRepairCenter/500);
+        System.out.println("Moyenne TpsAttMoyAvtCtrl = " + sumWaitingTimeBeforeControl/500);
+        System.out.println("Moyenne TpsAttMoyAvtRep = " + sumWaitingTimeBeforeRepair/500);
+        System.out.println("Moyenne TauxUtilisationCentreRep = " + sumUtilizationRepairCenterRate/500);
 
         //start echéncier
     }

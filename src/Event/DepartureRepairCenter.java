@@ -7,6 +7,7 @@ public class DepartureRepairCenter extends EventSimulator{
 
     @Override
     public void execute() {
+        System.out.println(name);
         statisticalIndicator.RepairCenter -= 1;
 
         if(statisticalIndicator.NbBusInRepairQ != 0) {

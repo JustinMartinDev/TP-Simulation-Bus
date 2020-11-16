@@ -7,6 +7,7 @@ public class StartSimulationEvent extends EventSimulator {
 
     @Override
     public void execute() {
+        System.out.println(name);
         statisticalIndicator.nbBus=0;
         statisticalIndicator.nbBusRepaired=0;
 
@@ -22,11 +23,5 @@ public class StartSimulationEvent extends EventSimulator {
         Scheduler.add(Scheduler.simulationDate+ getExpo(2), new BusArrivalEvent());
         Scheduler.add(Scheduler.simulationDate,new BusArrivalEvent());
         Scheduler.add(Scheduler.dateMax,new EndSimulationEvent());
-
-        /**
-         *
-         4. Insérer dans l'échéancier un événement ArrivéeBus à l'instant simulationDate + E(1/2)
-         5. Insérer dans l'échéancier un événement Fin à l'instant 160
-         */
     }
 }

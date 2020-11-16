@@ -7,7 +7,7 @@ public class AccessControlEvent extends EventSimulator {
 
     @Override
     public void execute() {
-
+        System.out.println(name);
         statisticalIndicator.NbBusInControlQ -= 1;
 
         statisticalIndicator.ControlCenter = true;
