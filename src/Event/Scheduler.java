@@ -9,23 +9,38 @@ public class Scheduler {
     //private static TreeMap<Double, ArrayList<EventSimulator>> listEvent;
     private static ArrayList<EventDatePair> listEvent;
     public static double simulationDate;
-    public static double dateMax;
 
     public static double aireControlQ=0f;
     public static double aireRepairQ=0f;
     public static double aireRepairCenter=0f;
 
+    public static double dateMax = 0d;
+    public static int nbMaxBus = 0;
+    public static StringBuilder stringCSV;
 
     public Scheduler(double dateMax){
         listEvent = new ArrayList<EventDatePair>();
         Scheduler.dateMax = dateMax;
     }
 
+    public Scheduler(int nbMaxBus){
+        listEvent = new ArrayList<EventDatePair>();
+        Scheduler.nbMaxBus = nbMaxBus;
+    }
+
     public void start(){
         simulationDate = 0f;
-        add(simulationDate, new StartSimulationEvent());
 
+        stringCSV = new StringBuilder();
+
+        add(simulationDate, new StartSimulationEvent());
         while(!listEvent.isEmpty()){
+
+            if(nbMaxBus > 0 && EventSimulator.statisticalIndicator.nbBus >= nbMaxBus){
+                new EndSimulationEvent().execute();
+                break;
+            }
+
             EventDatePair eventPairToRelease = listEvent.get(0);
             calcArea(eventPairToRelease.getDateToRelease());
             simulationDate = eventPairToRelease.getDateToRelease();
@@ -36,7 +51,7 @@ public class Scheduler {
 
             listEvent.sort(Comparator.comparing(EventDatePair::getDateToRelease));
         }
-
+        System.out.println("Data 5b: " + stringCSV);
     }
 
     public void calcArea(double dateEvent){
@@ -50,29 +65,14 @@ public class Scheduler {
     }
 
     public static void add(Double dbl, EventSimulator event){
-        if(dbl <= dateMax){
+        if(nbMaxBus>0 && EventSimulator.statisticalIndicator.nbBus < nbMaxBus || dateMax>0 && simulationDate < dateMax)
             listEvent.add(new EventDatePair(dbl, event));
-
-//            if (listEvent.containsKey(dbl)){
-//                listEvent.get(dbl).add(event);
-//            } else {
-//                ArrayList< EventSimulator> list = new ArrayList<>();
-//                list.add(event);
-//                listEvent.put(dbl, list);
-//            }
-        }
     }
 
-    public String toString() {
-        String str = "";
-
-//        for (Map.Entry<Double,ArrayList<EventSimulator>> entry: listEvent.entrySet()) {
-//            for (EventSimulator event: entry.getValue()) {
-//                str +=  "Key : " + entry.getKey() + " / Value : " + event.toString();
-//            }
-//        }
-
-        return str;
+    public void showList(){
+        for (EventDatePair event: listEvent){
+            System.out.println(event.getDateToRelease() + "===>" + event.getEvent().name);
+        }
     }
 
     public double getAireControlQ() {return aireControlQ;    }

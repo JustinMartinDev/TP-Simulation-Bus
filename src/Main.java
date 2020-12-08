@@ -10,7 +10,7 @@ public class Main {
         double sumUtilizationRepairCenterRate=0d;
 
         for (int i = 0; i < 500; i++) {
-            Scheduler scheduler = new Scheduler(240);
+            Scheduler scheduler = new Scheduler(15);
             scheduler.start();
 
             sumWaitingTimeBeforeControl += EndSimulationEvent.averageWaitingTimeBeforeControl;
@@ -21,7 +21,6 @@ public class Main {
         System.out.println("Moyenne TpsAttMoyAvtCtrl = " + sumWaitingTimeBeforeControl/500);
         System.out.println("Moyenne TpsAttMoyAvtRep = " + sumWaitingTimeBeforeRepair/500);
         System.out.println("Moyenne TauxUtilisationCentreRep = " + sumUtilizationRepairCenterRate/500);
-
         //start echéncier
     }
 

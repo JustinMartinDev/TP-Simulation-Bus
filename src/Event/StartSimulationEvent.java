@@ -22,6 +22,8 @@ public class StartSimulationEvent extends EventSimulator {
 
         Scheduler.add(Scheduler.simulationDate+ getExpo(2), new BusArrivalEvent());
         Scheduler.add(Scheduler.simulationDate,new BusArrivalEvent());
-        Scheduler.add(Scheduler.dateMax,new EndSimulationEvent());
+
+        if(Scheduler.dateMax > 0d)
+            Scheduler.add(Scheduler.dateMax,new EndSimulationEvent());
     }
 }

@@ -12,6 +12,5 @@ public class AccessRepairEvent extends EventSimulator{
         statisticalIndicator.RepairCenter += 1;
 
         Scheduler.add(Scheduler.simulationDate + getUni(2.1, 4.5), new DepartureRepairCenter());
-
     }
 }

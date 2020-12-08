@@ -15,13 +15,12 @@ public class EndSimulationEvent extends EventSimulator {
         System.out.println(name);
 
         Scheduler.clear();
-        averageWaitingTimeBeforeControl = Scheduler.aireControlQ/statisticalIndicator.nbBus;
-        averageWaitingTimeBeforeRepair = Scheduler.aireRepairQ/statisticalIndicator.nbBusRepaired;
-        utilizationRepairCenterRate = Scheduler.aireRepairCenter/(2 * Scheduler.dateMax);
+        averageWaitingTimeBeforeControl = Scheduler.aireControlQ/(statisticalIndicator.nbBus-statisticalIndicator.NbBusInControlQ);
+        averageWaitingTimeBeforeRepair = Scheduler.aireRepairQ/(statisticalIndicator.nbBusRepaired-statisticalIndicator.NbBusInControlQ);
+        utilizationRepairCenterRate = Scheduler.aireRepairCenter/(2 * Scheduler.simulationDate);
 
-
-        System.out.println("Temps d'attente moyen avant contrôle = "+ statisticalIndicator.nbBus);
-        System.out.println("Temps d'attente moyen avant réparation = "+ statisticalIndicator.nbBusRepaired);
+        System.out.println("Temps d'attente moyen avant contrôle = "+ averageWaitingTimeBeforeControl);
+        System.out.println("Temps d'attente moyen avant réparation = "+ averageWaitingTimeBeforeRepair);
     }
 
     protected static double getNext(int param){
